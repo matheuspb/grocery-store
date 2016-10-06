@@ -5,17 +5,17 @@
 
 class GroceryStore {
 public:
-	GroceryStore(unsigned int timeToBeSimulated,
-			unsigned int paceToCreateClients); 
-	//~GroceryStore();
-	void simulate();
+    GroceryStore(unsigned int timeToBeSimulated,
+            unsigned int paceToCreateClients);
+    //~GroceryStore();
+    void simulate();
 private:
-	void createClient();
+    void createClient();
 
-	structures::CircularList<Cashier> cashierList;
-	unsigned int timePassed{0u}; // in seconds
-	unsigned int timeToBeSimulated_;
-	unsigned int paceToCreateClients_;
+    structures::CircularList<Cashier> cashierList;
+    unsigned int timePassed{0u}; // in seconds
+    unsigned int timeToBeSimulated_;
+    unsigned int paceToCreateClients_;
 };
 
 #endif
