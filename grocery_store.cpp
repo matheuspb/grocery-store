@@ -1,15 +1,18 @@
 #include "grocery_store.hpp"
 
 GroceryStore::GroceryStore(unsigned int timeToBeSimulated,
-        unsigned int paceToCreateClients):
-    timeToBeSimulated_{timeToBeSimulated}
-    paceToCreateClients_{paceToCreateClients}
-{}
+        unsigned int paceToCreateClients,
+        structures::CircularList<Cashier> cashierList):
+    timeToBeSimulated_{timeToBeSimulated},
+    paceToCreateClients_{paceToCreateClients},
+    cashierList_{cashierList} {
+
+}
 
 void GroceryStore::simulate() {
     while (timePassed < timeToBeSimulated_) {
-        for (unsigned int i = 0; i < numberOfClients; ++i) {
-            cashierList.next().update();
+        for (int i = 0; i < cashierList_.size(); ++i) {
+            cashierList_.next().update(); // update not implemented
         }
         if (timePassed % paceToCreateClients_ == 0) {
             createClient();
@@ -19,6 +22,8 @@ void GroceryStore::simulate() {
 }
 
 void GroceryStore::createClient() {
-    // TODO Generate client and add to the correct cashier
+    /* TODO Generate client and add to the correct cashier, and compute the
+     * number of clients who give up, and the value of their purchase
+     */
 }
 
