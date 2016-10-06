@@ -1,12 +1,24 @@
-#include "cashier.hpp"
-#include "client.hpp"
+#include "grocery_store.hpp"
 
-int main()
-{
-    Cashier *caixa = new Cashier(1, 400.0, "Dimito");
-    Client* aux = new Client(0, 0, caixa->cashierEfficiency());
-    caixa->insertClient(*aux);
-    std::cout << caixa->totalGain() << "\n";
-    caixa->insertClient(*aux);
-    std::cout << caixa->totalGain() << "\n";
+GroceryStore::GroceryStore(unsigned int timeToBeSimulated,
+		unsigned int paceToCreateClients):
+	timeToBeSimulated_{timeToBeSimulated}
+	paceToCreateClients_{paceToCreateClients}
+{}
+
+void GroceryStore::simulate() {
+	while (timePassed < timeToBeSimulated_) {
+		for (unsigned int i = 0; i < numberOfClients; ++i) {
+			cashierList.next().update();
+		}
+		if (timePassed % paceToCreateClients_ == 0) {
+			createClient();
+		}
+		++timePassed;
+	}
 }
+
+void GroceryStore::createClient() {
+	// TODO Generate client and add to the correct cashier
+}
+
