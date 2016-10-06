@@ -1,16 +1,14 @@
-#include <iostream>
 #include "client.hpp"
 
 Client::Client(double arrivalTime, double clientsQueueTime, int cashierEfficiency)
 {
+    items_ = (std::rand()%99) + 2;
     departureTime_ = clientsQueueTime + purchaseTime(cashierEfficiency);
     arrivalTime_ = arrivalTime;
-    totalItemsValue_ = allProductsCost();
+    totalPurchaseValue_ = allProductsCost();
     payWithMoney_ = paymentMethod();
     searchSmallestQueue_ = queueChoice();
-    items_ = (rand()*99) + 2;
 }
-
 
 bool Client::paymentMethod()
 {
@@ -28,7 +26,7 @@ double Client::allProductsCost()
 {
     double value = 0.0;
     for (auto i = 0; i < items_; ++i) {
-        value += (rand()*90) + 1;
+        value += (std::rand()%90) + 1;
     }
     return value;
 }
@@ -47,4 +45,14 @@ double Client::purchaseTime(int cashierEfficiency)
         if (!payWithMoney_) time += 60;
     }
     return time;
+}
+
+double Client::departureTime()
+{
+    return departureTime_;
+}
+
+double Client::totalPurchaseValue()
+{
+    return totalPurchaseValue_;
 }

@@ -1,3 +1,8 @@
+#ifndef CLIENT_HPP
+#define CLIENT_HPP
+
+#include <iostream>
+
 class Client
 {
     public:
@@ -18,9 +23,12 @@ class Client
         bool queueChoice();
         double allProductsCost();
         double purchaseTime(int);
+        double departureTime();
+        double totalPurchaseValue();
 
     private:
         bool payWithMoney_, searchSmallestQueue_;
         int items_;
-        double totalItemsValue_, arrivalTime_, departureTime_;
+        double totalPurchaseValue_, arrivalTime_, departureTime_;
 };
+#endif
