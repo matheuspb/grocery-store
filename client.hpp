@@ -24,12 +24,11 @@ class Client
         double allProductsCost();
         int purchaseTime(int);
         double totalPurchaseValue();
-        void deparureTime(int);
         bool payWithMoney();
 
     private:
         bool payWithMoney_, searchSmallestQueue_;
-        int items_, departureTime_, arrivalTime_;
+        int items_, arrivalTime_;
         double totalPurchaseValue_;
 };
 #endif

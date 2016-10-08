@@ -29,7 +29,7 @@ void Cashier::removeFirstClient()
 void Cashier::update()
 {
     clientsQueueTime_--;
-    if (clientsQueue_->front().purchaseTime(cashierEfficiency) == actualClientTime_) {
+    if (clientsQueue_->front().purchaseTime(cashierEfficiency_) == actualClientTime_) {
         removeFirstClient();
         actualClientTime_ = 0;
     } else {
@@ -50,11 +50,6 @@ double Cashier::totalGain()
 int Cashier::cashierEfficiency()
 {
     return cashierEfficiency_;
-}
-
-int Cashier::actualClientsNumber()
-{
-    return actualClientsNumber_;
 }
 
 int Cashier::clientsQueueTime()

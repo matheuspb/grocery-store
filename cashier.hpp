@@ -24,7 +24,6 @@ class Cashier
         double averageGain();
         double totalGain();
         int cashierEfficiency();
-        int actualClientsNumber();
         int clientsQueueTime();
 
     private:
@@ -35,4 +34,4 @@ class Cashier
         structures::LinkedQueue<Client> *clientsQueue_;
 };
 
-#ifndef
+#endif

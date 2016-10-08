@@ -51,11 +51,6 @@ double Client::totalPurchaseValue()
     return totalPurchaseValue_;
 }
 
-void Client::departureTime(int time)
-{
-    departureTime_ = time;
-}
-
 bool Client::payWithMoney()
 {
     return payWithMoney_;
