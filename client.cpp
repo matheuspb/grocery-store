@@ -21,6 +21,11 @@ bool Client::queueChoice()
     return true;
 }
 
+bool Client::payWithMoney()
+{
+    return payWithMoney_;
+}
+
 int Client::allProductsCost()
 {
     auto value = 0;
@@ -49,9 +54,4 @@ int Client::purchaseTime(int cashierEfficiency)
 int Client::totalPurchaseValue()
 {
     return totalPurchaseValue_;
-}
-
-bool Client::payWithMoney()
-{
-    return payWithMoney_;
 }

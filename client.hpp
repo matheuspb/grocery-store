@@ -21,15 +21,13 @@ class Client
          *and 'false' if the client choose the queue by the items number.
          */
         bool queueChoice();
+        bool payWithMoney();
         int purchaseTime(int);
         int totalPurchaseValue();
-        bool payWithMoney();
 
     private:
         int allProductsCost();
-
         bool payWithMoney_, searchSmallestQueue_;
-        int items_, arrivalTime_;
-        int totalPurchaseValue_;
+        int items_, arrivalTime_, totalPurchaseValue_;
 };
 #endif
