@@ -5,29 +5,24 @@
 #include "linked_queue.h"
 #include "client.hpp"
 
-
-// TODO: Arrumar função update. Problema quando não há elementos na lista
-
-
-
 class Cashier
 {
     public:
-        Cashier(int, double, std::string);
+        Cashier(int, int, std::string);
 
         std::size_t clientsQueueSize();
         void insertClient(Client);
         void removeFirstClient();
         void update();
-        double averageGain();
-        double totalGain();
+        int averageGain();
+        int totalGain();
         int cashierEfficiency();
         int clientsQueueTime();
         int averageTime();
     private:
         int cashierEfficiency_, totalClientsNumber_{0};
         int clientsQueueTime_{0}, actualClientTime_{1}, totalQueueTime_{0};
-        double salary_, totalGain_{0.0};
+        int totalGain_{0}, salary_;
         std::string ID_;
         structures::LinkedQueue<Client> *clientsQueue_;
 };

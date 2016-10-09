@@ -1,6 +1,6 @@
 #include "cashier.hpp"
 
-Cashier::Cashier(int cashierEfficiency, double salary, std::string ID)
+Cashier::Cashier(int cashierEfficiency, int salary, std::string ID)
 {
     cashierEfficiency_ = cashierEfficiency;
     salary_ = salary;
@@ -29,21 +29,23 @@ void Cashier::removeFirstClient()
 
 void Cashier::update()
 {
-    if (clientsQueueSize() != 0) clientsQueueTime_--;
-    if (clientsQueue_->front().purchaseTime(cashierEfficiency_) == actualClientTime_) {
-        removeFirstClient();
-        actualClientTime_ = 1;
-    } else {
-        actualClientTime_++;
+    if (clientsQueueSize() != 0) {
+        clientsQueueTime_--;
+        if (clientsQueue_->front().purchaseTime(cashierEfficiency_) == actualClientTime_) {
+            removeFirstClient();
+            actualClientTime_ = 1;
+        } else {
+            actualClientTime_++;
+        }
     }
 }
 
-double Cashier::averageGain()
+int Cashier::averageGain()
 {
     return totalGain_/totalClientsNumber_;
 }
 
-double Cashier::totalGain()
+int Cashier::totalGain()
 {
     return totalGain_;
 }
