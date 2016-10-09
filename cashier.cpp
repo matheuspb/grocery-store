@@ -16,22 +16,23 @@ std::size_t Cashier::clientsQueueSize()
 void Cashier::insertClient(Client newClient)
 {
     clientsQueueTime_ += newClient.purchaseTime(cashierEfficiency_);
-    totalGain_ += newClient.totalPurchaseValue();
     clientsQueue_->enqueue(newClient);
     totalClientsNumber_++;
 }
 
 void Cashier::removeFirstClient()
 {
-    clientsQueue_->dequeue();
+    auto oldClient = clientsQueue_->dequeue();
+    totalQueueTime_ += oldClient.purchaseTime(cashierEfficiency_);
+    totalGain_ += oldClient.totalPurchaseValue();
 }
 
 void Cashier::update()
 {
-    clientsQueueTime_--;
+    if (clientsQueueSize() != 0) clientsQueueTime_--;
     if (clientsQueue_->front().purchaseTime(cashierEfficiency_) == actualClientTime_) {
         removeFirstClient();
-        actualClientTime_ = 0;
+        actualClientTime_ = 1;
     } else {
         actualClientTime_++;
     }
@@ -55,4 +56,9 @@ int Cashier::cashierEfficiency()
 int Cashier::clientsQueueTime()
 {
     return clientsQueueTime_;
+}
+
+int Cashier::averageTime()
+{
+    return totalQueueTime_/totalClientsNumber_;
 }

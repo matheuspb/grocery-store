@@ -5,12 +5,10 @@
 #include "linked_queue.h"
 #include "client.hpp"
 
-/*
- *
- *  TODO: Receber o tempo de espera do cliente no momento de retirada dele
- *        da fila.
- *
- */
+
+// TODO: Arrumar função update. Problema quando não há elementos na lista
+
+
 
 class Cashier
 {
@@ -25,10 +23,10 @@ class Cashier
         double totalGain();
         int cashierEfficiency();
         int clientsQueueTime();
-
+        int averageTime();
     private:
         int cashierEfficiency_, totalClientsNumber_{0};
-        int clientsQueueTime_{0}, actualClientTime_{0};
+        int clientsQueueTime_{0}, actualClientTime_{1}, totalQueueTime_{0};
         double salary_, totalGain_{0.0};
         std::string ID_;
         structures::LinkedQueue<Client> *clientsQueue_;

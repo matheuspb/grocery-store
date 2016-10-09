@@ -21,9 +21,9 @@ bool Client::queueChoice()
     return true;
 }
 
-double Client::allProductsCost()
+int Client::allProductsCost()
 {
-    double value = 0.0;
+    auto value = 0;
     for (auto i = 0; i < items_; ++i) {
         value += (std::rand()%90) + 1;
     }
@@ -46,7 +46,7 @@ int Client::purchaseTime(int cashierEfficiency)
     return time;
 }
 
-double Client::totalPurchaseValue()
+int Client::totalPurchaseValue()
 {
     return totalPurchaseValue_;
 }
