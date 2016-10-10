@@ -1,36 +1,27 @@
 #include "cashier.hpp"
 
-Cashier::Cashier() {
-    clientsQueue_ = new structures::LinkedQueue<Client>();
-}
-
 Cashier::Cashier(int cashierEfficiency, int salary, std::string ID)
 {
     cashierEfficiency_ = cashierEfficiency;
     salary_ = salary;
     ID_ = ID;
-    clientsQueue_ = new structures::LinkedQueue<Client>();
-}
-
-Cashier::~Cashier() {
-    //delete clientsQueue_;
 }
 
 std::size_t Cashier::clientsQueueSize()
 {
-    return clientsQueue_->size();
+    return clientsQueue_.size();
 }
 
-void Cashier::insertClient(Client newClient)
+void Cashier::insertClient(Client& newClient)
 {
     clientsQueueTime_ += newClient.purchaseTime(cashierEfficiency_);
-    clientsQueue_->enqueue(newClient);
-    totalClientsNumber_++;
+    clientsQueue_.enqueue(newClient);
+    ++totalClientsNumber_;
 }
 
 void Cashier::removeFirstClient()
 {
-    auto oldClient = clientsQueue_->dequeue();
+    auto oldClient = clientsQueue_.dequeue();
     totalQueueTime_ += oldClient.purchaseTime(cashierEfficiency_);
     totalGain_ += oldClient.totalPurchaseValue();
 }
@@ -39,7 +30,7 @@ void Cashier::update()
 {
     if (clientsQueueSize() != 0) {
         clientsQueueTime_--;
-        if (clientsQueue_->front().purchaseTime(cashierEfficiency_) ==
+        if (clientsQueue_.front().purchaseTime(cashierEfficiency_) ==
                 actualClientTime_) {
             removeFirstClient();
             actualClientTime_ = 1;

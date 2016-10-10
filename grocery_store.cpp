@@ -2,21 +2,17 @@
 
 GroceryStore::GroceryStore(unsigned int timeToBeSimulated,
         unsigned int paceToCreateClients,
-        structures::CircularList<Cashier>* cashierList):
+        structures::CircularList<Cashier>&& cashierList):
     timeToBeSimulated_{timeToBeSimulated},
     paceToCreateClients_{paceToCreateClients},
-    cashierList_{cashierList} {
+    cashierList_{std::move(cashierList)} {
 
-}
-
-GroceryStore::~GroceryStore() {
-    delete cashierList_;
 }
 
 void GroceryStore::simulate() {
     while (timePassed < timeToBeSimulated_) {
-        for (unsigned int i = 0; i < cashierList_->size(); ++i) {
-            cashierList_->next().update(); // update not implemented
+        for (unsigned int i = 0; i < cashierList_.size(); ++i) {
+            cashierList_.next().update();
         }
         if (timePassed % paceToCreateClients_ == 0) {
             createClient();
@@ -31,15 +27,15 @@ void GroceryStore::createClient() {
         // choose by number of people
         int smallestQueue = 0;
         std::size_t min = -1; // greatest int possible
-        for (unsigned int i = 0; i < cashierList_->size(); ++i) {
-            std::size_t actual = cashierList_->next().clientsQueueSize();
+        for (unsigned int i = 0; i < cashierList_.size(); ++i) {
+            std::size_t actual = cashierList_.next().clientsQueueSize();
             if (actual < min) {
                 smallestQueue = i;
                 min = actual;
             }
         }
         if (min < 10) {
-            cashierList_->at(smallestQueue).insertClient(newClient);
+            cashierList_.at(smallestQueue).insertClient(newClient);
         } else {
             // TODO Client gave up shopping
         }
@@ -47,14 +43,14 @@ void GroceryStore::createClient() {
         // choose by number of items (time left in queue)
         int smallestQueue = 0;
         std::size_t min = -1; // greatest int possible
-        for (unsigned int i = 0; i < cashierList_->size(); ++i) {
-            std::size_t actual = cashierList_->next().clientsQueueTime();
+        for (unsigned int i = 0; i < cashierList_.size(); ++i) {
+            std::size_t actual = cashierList_.next().clientsQueueTime();
             if (actual < min) {
                 smallestQueue = i;
                 min = actual;
             }
         }
-        cashierList_->at(smallestQueue).insertClient(newClient);
+        cashierList_.at(smallestQueue).insertClient(newClient);
     }
 }
 

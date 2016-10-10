@@ -28,7 +28,17 @@ public:
 		head = sentinel;
 	}
 
-	/**
+	CircularList(CircularList&& other) {
+		head = other.head;
+		size_ = other.size_;
+		other.head = new Node();
+		other.head->next(other.head);
+		other.size_ = 0;
+	}
+
+	CircularList(const CircularList&) = delete;
+
+	/*
 	 * @brief Destructor
 	 */
 	~CircularList() {

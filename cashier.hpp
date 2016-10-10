@@ -8,12 +8,11 @@
 class Cashier
 {
     public:
-        Cashier();
+		Cashier() = default;
         Cashier(int, int, std::string);
-        ~Cashier();
 
         std::size_t clientsQueueSize();
-        void insertClient(Client);
+        void insertClient(Client&);
         void removeFirstClient();
         void update();
         int averageGain();
@@ -26,7 +25,7 @@ class Cashier
         int clientsQueueTime_{0}, actualClientTime_{1}, totalQueueTime_{0};
         int totalGain_{0}, salary_{0};
         std::string ID_{};
-        structures::LinkedQueue<Client> *clientsQueue_;
+        structures::LinkedQueue<Client> clientsQueue_{};
 };
 
 #endif
