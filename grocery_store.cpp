@@ -22,8 +22,34 @@ void GroceryStore::simulate() {
 }
 
 void GroceryStore::createClient() {
-    /* TODO Generate client and add to the correct cashier, and compute the
-     * number of clients who give up, and the value of their purchase
-     */
+    if (newClient.queueChoice()) {
+        // choose by number of people
+        int smallestQueue = 0;
+        std::size_t int min = -1; // greatest int possible
+        for (int i = 0; i < cashierList_.size(); ++i) {
+            std::size_t actual = cahierList_.next().clientsQueueSize();
+            if (actual < min) {
+                smallestQueue = i;
+                min = actual;
+            }
+        }
+        if (min < 10) {
+            cashierList_.at(smallestQueue).insertClient(Client newClient);
+        } else {
+            // TODO Client gave up shopping
+        }
+    } else {
+        // choose by number of items (time left in queue)
+        int smallestQueue = 0;
+        std::size_t int min = -1; // greatest int possible
+        for (int i = 0; i < cashierList_.size(); ++i) {
+            std::size_t actual = cahierList_.next().clientsQueueTime();
+            if (actual < min) {
+                smallestQueue = i;
+                min = actual;
+            }
+        }
+        cashierList_.at(smallestQueue).insertClient(Client newClient);
+    }
 }
 

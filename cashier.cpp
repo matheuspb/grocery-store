@@ -31,7 +31,8 @@ void Cashier::update()
 {
     if (clientsQueueSize() != 0) {
         clientsQueueTime_--;
-        if (clientsQueue_->front().purchaseTime(cashierEfficiency_) == actualClientTime_) {
+        if (clientsQueue_->front().purchaseTime(cashierEfficiency_) ==
+                actualClientTime_) {
             removeFirstClient();
             actualClientTime_ = 1;
         } else {
