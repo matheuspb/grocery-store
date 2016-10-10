@@ -23,7 +23,7 @@ public:
 	 * @brief Default constructor
 	 */
 	CircularList() {
-		auto sentinel = new Node(0);
+		auto sentinel = new Node();
 		sentinel->next(sentinel);
 		head = sentinel;
 	}
@@ -230,6 +230,8 @@ public:
 private:
 	class Node {
 	public:
+		Node() = default;
+
 		explicit Node(const T& data): data_{data} {}
 
 		Node(const T& data, Node* next): data_{data}, next_{next} {}

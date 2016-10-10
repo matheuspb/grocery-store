@@ -1,5 +1,9 @@
 #include "cashier.hpp"
 
+Cashier::Cashier() {
+    clientsQueue_ = new structures::LinkedQueue<Client>();
+}
+
 Cashier::Cashier(int cashierEfficiency, int salary, std::string ID)
 {
     cashierEfficiency_ = cashierEfficiency;
@@ -13,10 +17,10 @@ std::size_t Cashier::clientsQueueSize()
     return clientsQueue_->size();
 }
 
-void Cashier::insertClient(Client newClient)
+void Cashier::insertClient(Client* newClient)
 {
-    clientsQueueTime_ += newClient.purchaseTime(cashierEfficiency_);
-    clientsQueue_->enqueue(newClient);
+    clientsQueueTime_ += newClient->purchaseTime(cashierEfficiency_);
+    clientsQueue_->enqueue(*newClient);
     totalClientsNumber_++;
 }
 

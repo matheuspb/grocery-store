@@ -8,8 +8,7 @@ class GroceryStore {
 public:
     GroceryStore(unsigned int timeToBeSimulated,
             unsigned int paceToCreateClients,
-            structures::CircularList<Cashier> cashierList);
-    //~GroceryStore();
+            structures::CircularList<Cashier>* cashierList);
     void simulate();
 private:
     void createClient();
@@ -17,7 +16,7 @@ private:
     unsigned int timePassed{0u}; // in seconds
     unsigned int timeToBeSimulated_;
     unsigned int paceToCreateClients_;
-    structures::CircularList<Cashier> cashierList_;
+    structures::CircularList<Cashier>* cashierList_;
 };
 
 #endif
