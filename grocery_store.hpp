@@ -9,6 +9,7 @@ public:
     GroceryStore(unsigned int timeToBeSimulated,
             unsigned int paceToCreateClients,
             structures::CircularList<Cashier>* cashierList);
+    ~GroceryStore();
     void simulate();
 private:
     void createClient();

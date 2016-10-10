@@ -8,11 +8,12 @@
 class Cashier
 {
     public:
-		Cashier();
+        Cashier();
         Cashier(int, int, std::string);
+        ~Cashier();
 
         std::size_t clientsQueueSize();
-        void insertClient(Client*);
+        void insertClient(Client);
         void removeFirstClient();
         void update();
         int averageGain();

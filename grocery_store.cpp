@@ -9,6 +9,10 @@ GroceryStore::GroceryStore(unsigned int timeToBeSimulated,
 
 }
 
+GroceryStore::~GroceryStore() {
+    delete cashierList_;
+}
+
 void GroceryStore::simulate() {
     while (timePassed < timeToBeSimulated_) {
         for (unsigned int i = 0; i < cashierList_->size(); ++i) {
@@ -22,8 +26,8 @@ void GroceryStore::simulate() {
 }
 
 void GroceryStore::createClient() {
-    Client* newClient = new Client(timePassed);
-    if (newClient->queueChoice()) {
+    Client newClient(timePassed);
+    if (newClient.queueChoice()) {
         // choose by number of people
         int smallestQueue = 0;
         std::size_t min = -1; // greatest int possible
