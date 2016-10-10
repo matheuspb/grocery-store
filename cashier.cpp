@@ -1,6 +1,6 @@
 #include "cashier.hpp"
 
-Cashier::Cashier(int cashierEfficiency, double salary, std::string ID)
+Cashier::Cashier(int cashierEfficiency, int salary, std::string ID)
 {
     cashierEfficiency_ = cashierEfficiency;
     salary_ = salary;
@@ -15,18 +15,37 @@ std::size_t Cashier::clientsQueueSize()
 
 void Cashier::insertClient(Client newClient)
 {
-    clientsQueueTime_ = newClient.departureTime();
-    totalGain_ += newClient.totalPurchaseValue();
+    clientsQueueTime_ += newClient.purchaseTime(cashierEfficiency_);
     clientsQueue_->enqueue(newClient);
-    numberOfClients_++;
+    totalClientsNumber_++;
 }
 
-double Cashier::averageGain()
+void Cashier::removeFirstClient()
 {
-    return totalGain_/numberOfClients_;
+    auto oldClient = clientsQueue_->dequeue();
+    totalQueueTime_ += oldClient.purchaseTime(cashierEfficiency_);
+    totalGain_ += oldClient.totalPurchaseValue();
 }
 
-double Cashier::totalGain()
+void Cashier::update()
+{
+    if (clientsQueueSize() != 0) {
+        clientsQueueTime_--;
+        if (clientsQueue_->front().purchaseTime(cashierEfficiency_) == actualClientTime_) {
+            removeFirstClient();
+            actualClientTime_ = 1;
+        } else {
+            actualClientTime_++;
+        }
+    }
+}
+
+int Cashier::averageGain()
+{
+    return totalGain_/totalClientsNumber_;
+}
+
+int Cashier::totalGain()
 {
     return totalGain_;
 }
@@ -34,4 +53,14 @@ double Cashier::totalGain()
 int Cashier::cashierEfficiency()
 {
     return cashierEfficiency_;
+}
+
+int Cashier::clientsQueueTime()
+{
+    return clientsQueueTime_;
+}
+
+int Cashier::averageTime()
+{
+    return totalQueueTime_/totalClientsNumber_;
 }

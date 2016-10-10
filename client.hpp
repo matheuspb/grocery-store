@@ -6,7 +6,7 @@
 class Client
 {
     public:
-        Client(double, double, int);
+        Client(int);
 
         //! Returns the 'paymant method' to a client.
         /*!
@@ -21,14 +21,13 @@ class Client
          *and 'false' if the client choose the queue by the items number.
          */
         bool queueChoice();
-        double allProductsCost();
-        double purchaseTime(int);
-        double departureTime();
-        double totalPurchaseValue();
+        bool payWithMoney();
+        int purchaseTime(int);
+        int totalPurchaseValue();
 
     private:
+        int allProductsCost();
         bool payWithMoney_, searchSmallestQueue_;
-        int items_;
-        double totalPurchaseValue_, arrivalTime_, departureTime_;
+        int items_, arrivalTime_, totalPurchaseValue_;
 };
 #endif
