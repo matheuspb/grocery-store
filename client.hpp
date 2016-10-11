@@ -26,8 +26,12 @@ public:
 
 private:
     int allProductsCost();
-    bool payWithMoney_, searchSmallestQueue_;
-    int items_, arrivalTime_, totalPurchaseValue_;
+
+    bool payWithMoney_;
+    bool searchSmallestQueue_;
+    int items_;
+    int arrivalTime_;
+    int totalPurchaseValue_;
 };
 
 #endif

@@ -1,11 +1,11 @@
 #include "client.hpp"
 
-Client::Client(int arrivalTime)
+Client::Client(int arrivalTime):
+    payWithMoney_{paymentMethod()},
+    searchSmallestQueue_{queueChoice()},
     items_{(std::rand()%99) + 2},
     arrivalTime_{arrivalTime},
-    totalPurchaseValue_{allProductsCost()},
-    payWithMoney_{paymentMethod()},
-    searchSmallestQueue_{queueChoice()}
+    totalPurchaseValue_{allProductsCost()}
 {
 }
 

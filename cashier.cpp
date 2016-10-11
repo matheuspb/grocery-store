@@ -1,6 +1,6 @@
 #include "cashier.hpp"
 
-Cashier::Cashier(int cashierEfficiency, int salary, std::string ID)
+Cashier::Cashier(int cashierEfficiency, int salary, std::string ID):
     cashierEfficiency_{cashierEfficiency},
     salary_{salary},
     ID_{ID}

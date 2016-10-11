@@ -2,7 +2,7 @@
 #define CASHIER_HPP
 
 #include <iostream>
-#include "linked_queue.h"
+#include "linked_queue.hpp"
 #include "client.hpp"
 
 class Cashier {
