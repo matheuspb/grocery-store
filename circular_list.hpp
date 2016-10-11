@@ -28,15 +28,28 @@ public:
 		head = sentinel;
 	}
 
+	CircularList(const CircularList&) = delete;
+	CircularList& operator=(const CircularList&) = delete;
+
 	/**
 	 * @brief Move constructor
 	 */
-	CircularList(CircularList&& other) {
-		head = other.head;
-		size_ = other.size_;
+	CircularList(CircularList&& other):
+			head{other.head},
+			size_{other.size_} {
 		other.head = new Node();
 		other.head->next(other.head);
 		other.size_ = 0;
+	}
+
+	/**
+	 * @brief Move assignment operator
+	 */
+	CircularList& operator=(CircularList&& other) {
+		clear();
+		CircularList list(std::move(other));
+		*this = list;
+		return *this;
 	}
 
 	/*
@@ -113,7 +126,7 @@ public:
 	 *
 	 * @return A reference to the element at the given index
 	 */
-	T& at(std::size_t index) {
+	T& at(std::size_t index) const {
 		if (index >= size_) throw std::out_of_range("Index out of bounds");
 		Node* it = head->next();
 		for (std::size_t i = 0; i < index; ++i) {
@@ -260,7 +273,7 @@ private:
 		}
 
 	private:
-		T data_;
+		T data_{};
 		Node* next_{nullptr};
 	};
 

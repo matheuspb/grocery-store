@@ -31,6 +31,11 @@ public:
 		clear();
 	}
 
+	//LinkedQueue(const LinkedQueue&) = delete;
+	//LinkedQueue(LinkedQueue&&) = delete;
+	//LinkedQueue& operator=(const LinkedQueue&) = delete;
+	//LinkedQueue& operator=(LinkedQueue&&) = delete;
+
 	/**
 	 * @brief Clears the queue
 	 */
