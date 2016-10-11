@@ -28,6 +28,9 @@ public:
 		head = sentinel;
 	}
 
+	/**
+	 * @brief Move constructor
+	 */
 	CircularList(CircularList&& other) {
 		head = other.head;
 		size_ = other.size_;
@@ -35,8 +38,6 @@ public:
 		other.head->next(other.head);
 		other.size_ = 0;
 	}
-
-	CircularList(const CircularList&) = delete;
 
 	/*
 	 * @brief Destructor

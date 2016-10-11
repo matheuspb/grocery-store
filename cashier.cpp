@@ -1,10 +1,10 @@
 #include "cashier.hpp"
 
 Cashier::Cashier(int cashierEfficiency, int salary, std::string ID)
+    cashierEfficiency_{cashierEfficiency},
+    salary_{salary},
+    ID_{ID}
 {
-    cashierEfficiency_ = cashierEfficiency;
-    salary_ = salary;
-    ID_ = ID;
 }
 
 std::size_t Cashier::clientsQueueSize()

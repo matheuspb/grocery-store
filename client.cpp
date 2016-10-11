@@ -1,12 +1,12 @@
 #include "client.hpp"
 
 Client::Client(int arrivalTime)
+    items_{(std::rand()%99) + 2},
+    arrivalTime_{arrivalTime},
+    totalPurchaseValue_{allProductsCost()},
+    payWithMoney_{paymentMethod()},
+    searchSmallestQueue_{queueChoice()}
 {
-    items_ = (std::rand()%99) + 2;
-    arrivalTime_ = arrivalTime;
-    totalPurchaseValue_ = allProductsCost();
-    payWithMoney_ = paymentMethod();
-    searchSmallestQueue_ = queueChoice();
 }
 
 bool Client::paymentMethod()

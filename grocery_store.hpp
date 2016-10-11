@@ -1,5 +1,5 @@
-#ifndef GROCERY_LIST_HPP
-#define GROCERY_LIST_HPP
+#ifndef GROCERY_STORE_HPP
+#define GROCERY_STORE_HPP
 
 #include "circular_list.hpp"
 #include "cashier.hpp"
@@ -10,6 +10,7 @@ public:
             unsigned int paceToCreateClients,
             structures::CircularList<Cashier>&& cashierList);
     void simulate();
+
 private:
     void createClient();
 
