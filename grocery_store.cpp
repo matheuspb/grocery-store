@@ -37,7 +37,8 @@ void GroceryStore::createClient() {
         if (min < 10) {
             cashierList_.at(smallestQueue).insertClient(newClient);
         } else {
-            // TODO Client gave up shopping
+            ++numberOfClientsGone;
+            lostShoppingValue += newClient.totalPurchaseValue();
         }
     } else {
         // choose by number of items (time left in queue)

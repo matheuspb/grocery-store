@@ -15,6 +15,8 @@ private:
     void createClient();
 
     unsigned int timePassed{0u}; // in seconds
+    unsigned int numberOfClientsGone{0u};
+    unsigned int lostShoppingValue{0u};
     unsigned int timeToBeSimulated_;
     unsigned int paceToCreateClients_;
     structures::CircularList<Cashier> cashierList_;
