@@ -19,6 +19,8 @@ public:
     int cashierEfficiency();
     int clientsQueueTime() const;
     int averageTime();
+    std::string name() const;
+    int salary() const;
 
 private:
     int cashierEfficiency_{1};

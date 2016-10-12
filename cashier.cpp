@@ -64,3 +64,14 @@ int Cashier::averageTime()
 {
     return totalQueueTime_/totalClientsNumber_;
 }
+
+std::string Cashier::name() const
+{
+    return ID_;
+}
+
+int Cashier::salary() const
+{
+    return salary_;
+}
+

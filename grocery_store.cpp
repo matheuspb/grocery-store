@@ -23,7 +23,26 @@ void GroceryStore::simulate() {
 }
 
 void GroceryStore::showResults() {
-    std::cout << "Number of clients who gave up: " << numberOfClientsGone;
+    int gain = 0;
+    for (unsigned int i = 0; i < cashierList_.size(); ++i) {
+        gain += cashierList_.next().totalGain();
+    }
+
+    std::cout << "Total grocery store gain: " << gain << "\n";
+    std::cout << "Average gain per cashier: " << gain/cashierList_.size();
+    std::cout << "\nGain per cashier:\n";
+    for (unsigned int i = 0; i < cashierList_.size(); ++i) {
+        auto it = cashierList_.next();
+        std::cout << "    " << it.name() << " = " << it.totalGain() << "\n";
+    }
+
+    int totalWait = 0;
+    for (unsigned int i = 0; i < cashierList_.size(); ++i) {
+        totalWait += cashierList_.next().averageTime();
+    }
+
+    std::cout << "Average waiting time: " << totalWait/cashierList_. size();
+    std::cout << "\nNumber of clients who gave up: " << numberOfClientsGone;
     std::cout << "\nTotal value of the shopping of the clients who gave up: ";
     std::cout << lostShoppingValue << "\n";
 }
@@ -61,7 +80,7 @@ bool GroceryStore::willGiveUp(const Client& client) {
             smallestQueueSize = actualNumberOfPeople;
         }
     }
-    
+
     return smallestQueueSize >= 10;
 }
 
