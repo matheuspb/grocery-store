@@ -1,28 +1,13 @@
 #include <iostream>
-#include <fstream>
-#include <vector>
 #include <sstream>
 #include "grocery_store.hpp"
-
-std::vector<std::string> readInputFile() {
-    auto output_vector = std::vector<std::string>{};
-    std::ifstream file;
-    file.open("input_parameters.dat");
-    while (!file.eof()) {
-        std::string read_line;
-        std::getline(file, read_line);
-        if (read_line[0] != '#' && read_line.length() > 0 && read_line[0] != ' ')
-        {
-            output_vector.push_back(read_line);
-        }
-    }
-    return output_vector;
-}
+#include "input.hpp"
 
 int main() {
     structures::CircularList<Cashier> cashiers;
 
-    std::vector<std::string> parameters = readInputFile();
+    std::vector<std::string> parameters = input::readInputFile();
+    if (parameters.size() == 0) parameters = input::readParametersInput();
     for (auto i = 0; i < std::stoi(parameters[3]); ++i) {
         std::stringstream read_line(parameters[i+4]);
         std::string cashier_name;
