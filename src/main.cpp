@@ -7,7 +7,7 @@
 std::vector<std::string> readInputFile() {
     auto output_vector = std::vector<std::string>{};
     std::ifstream file;
-    file.open("input_parameters.txt");
+    file.open("input_parameters.dat");
     while (!file.eof()) {
         std::string read_line;
         std::getline(file, read_line);
