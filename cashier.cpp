@@ -40,17 +40,17 @@ void Cashier::update()
     }
 }
 
-int Cashier::averageGain()
+int Cashier::averageGain() const
 {
     return totalGain_/totalClientsNumber_;
 }
 
-int Cashier::totalGain()
+int Cashier::totalGain() const
 {
     return totalGain_;
 }
 
-int Cashier::cashierEfficiency()
+int Cashier::cashierEfficiency() const
 {
     return cashierEfficiency_;
 }
@@ -60,7 +60,7 @@ int Cashier::clientsQueueTime() const
     return clientsQueueTime_;
 }
 
-int Cashier::averageTime()
+int Cashier::averageTime() const
 {
     return totalQueueTime_/totalClientsNumber_;
 }

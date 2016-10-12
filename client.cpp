@@ -2,7 +2,7 @@
 
 Client::Client(int arrivalTime):
     payWithMoney_{paymentMethod()},
-    searchSmallestQueue_{queueChoice()},
+    searchSmallestQueue_{genQueueChoice()},
     items_{(std::rand()%99) + 2},
     arrivalTime_{arrivalTime},
     totalPurchaseValue_{allProductsCost()}
@@ -16,6 +16,11 @@ bool Client::paymentMethod()
 }
 
 bool Client::queueChoice()
+{
+    return searchSmallestQueue_;
+}
+
+bool Client::genQueueChoice()
 {
     if (std::rand() < 0.50) return false;
     return true;

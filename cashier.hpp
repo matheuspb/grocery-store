@@ -14,11 +14,11 @@ public:
     void insertClient(Client&);
     void removeFirstClient();
     void update();
-    int averageGain();
-    int totalGain();
-    int cashierEfficiency();
+    int averageGain() const;
+    int totalGain() const;
+    int cashierEfficiency() const;
     int clientsQueueTime() const;
-    int averageTime();
+    int averageTime() const;
     std::string name() const;
     int salary() const;
 

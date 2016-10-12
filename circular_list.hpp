@@ -268,6 +268,13 @@ public:
 		return it->data();
 	}
 
+	const T& next() const {
+		static Node* it = head;
+		it = it->next();
+		if (it == head) it = it->next();
+		return it->data();
+	}
+
 private:
 	class Node {
 	public:

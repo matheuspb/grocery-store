@@ -22,7 +22,7 @@ void GroceryStore::simulate() {
     }
 }
 
-void GroceryStore::showResults() {
+void GroceryStore::showResults() const {
     int gain = 0;
     for (unsigned int i = 0; i < cashierList_.size(); ++i) {
         gain += cashierList_.next().totalGain();
@@ -70,7 +70,7 @@ void GroceryStore::createClient() {
     }
 }
 
-bool GroceryStore::willGiveUp(const Client& client) {
+bool GroceryStore::willGiveUp(const Client& client) const {
     std::size_t smallestQueueSize = -1;
 
     for (unsigned int i = 0; i < cashierList_.size(); ++i) {
@@ -84,7 +84,7 @@ bool GroceryStore::willGiveUp(const Client& client) {
     return smallestQueueSize >= 10;
 }
 
-std::size_t GroceryStore::queueSize(const Cashier& cashier, bool choice) {
+std::size_t GroceryStore::queueSize(const Cashier& cashier, bool choice) const {
     if (choice) {
         return cashier.clientsQueueSize();
     } else {
