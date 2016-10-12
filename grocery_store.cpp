@@ -61,8 +61,8 @@ bool GroceryStore::willGiveUp(const Client& client) {
             smallestQueueSize = actualNumberOfPeople;
         }
     }
-
-    return smallestQueueSize > 10;
+    
+    return smallestQueueSize >= 10;
 }
 
 std::size_t GroceryStore::queueSize(const Cashier& cashier, bool choice) {
