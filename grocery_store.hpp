@@ -10,9 +10,12 @@ public:
             unsigned int paceToCreateClients,
             structures::CircularList<Cashier>&& cashierList);
     void simulate();
+    void showResults();
 
 private:
     void createClient();
+    bool willGiveUp(const Client&);
+    std::size_t queueSize(const Cashier&, bool);
 
     unsigned int timePassed{0u}; // in seconds
     unsigned int numberOfClientsGone{0u};

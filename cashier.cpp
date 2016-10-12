@@ -7,7 +7,7 @@ Cashier::Cashier(int cashierEfficiency, int salary, std::string ID):
 {
 }
 
-std::size_t Cashier::clientsQueueSize()
+std::size_t Cashier::clientsQueueSize() const
 {
     return clientsQueue_.size();
 }
@@ -55,7 +55,7 @@ int Cashier::cashierEfficiency()
     return cashierEfficiency_;
 }
 
-int Cashier::clientsQueueTime()
+int Cashier::clientsQueueTime() const
 {
     return clientsQueueTime_;
 }

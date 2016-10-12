@@ -7,7 +7,8 @@ int main() {
     Cashier maria(1, 800, "maria");
     cashiers.push_front(joao);
     cashiers.push_front(maria);
-    GroceryStore store(3600, 60, std::move(cashiers));
+    GroceryStore store(3600, 30, std::move(cashiers));
     store.simulate();
+    store.showResults();
 }
 

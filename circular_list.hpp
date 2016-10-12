@@ -28,8 +28,23 @@ public:
 		head = sentinel;
 	}
 
-	CircularList(const CircularList&) = delete;
-	CircularList& operator=(const CircularList&) = delete;
+	CircularList(const CircularList& other) {
+		CircularList list;
+		for (std::size_t i = other.size_; i > 0; --i) {
+			list.push_front(T(other.at(i - 1)));
+		}
+		head = list.head;
+		size_ = list.size_;
+	}
+
+	CircularList& operator=(const CircularList& other) {
+		clear();
+		delete head;
+		CircularList list(other);
+		head = list.head;
+		size_ = list.size_;
+		return *this;
+	}
 
 	/**
 	 * @brief Move constructor
@@ -47,8 +62,10 @@ public:
 	 */
 	CircularList& operator=(CircularList&& other) {
 		clear();
+		delete head;
 		CircularList list(std::move(other));
-		*this = list;
+		head = list.head;
+		size_ = list.size_;
 		return *this;
 	}
 

@@ -1,4 +1,5 @@
 #include "grocery_store.hpp"
+#include <iostream>
 
 GroceryStore::GroceryStore(unsigned int timeToBeSimulated,
         unsigned int paceToCreateClients,
@@ -21,37 +22,54 @@ void GroceryStore::simulate() {
     }
 }
 
+void GroceryStore::showResults() {
+    std::cout << "Number of clients who gave up: " << numberOfClientsGone;
+    std::cout << "\nTotal value of the shopping of the clients who gave up: ";
+    std::cout << lostShoppingValue << "\n";
+}
+
 void GroceryStore::createClient() {
     Client newClient(timePassed);
-    if (newClient.queueChoice()) {
-        // choose by number of people
-        int smallestQueue = 0;
-        std::size_t min = -1; // greatest int possible
-        for (unsigned int i = 0; i < cashierList_.size(); ++i) {
-            std::size_t actual = cashierList_.next().clientsQueueSize();
-            if (actual < min) {
-                smallestQueue = i;
-                min = actual;
-            }
-        }
-        if (min < 10) {
-            cashierList_.at(smallestQueue).insertClient(newClient);
-        } else {
-            ++numberOfClientsGone;
-            lostShoppingValue += newClient.totalPurchaseValue();
-        }
+
+    if (willGiveUp(newClient)) {
+        ++numberOfClientsGone;
+        lostShoppingValue += newClient.totalPurchaseValue();
     } else {
-        // choose by number of items (time left in queue)
-        int smallestQueue = 0;
+        unsigned int smallestQueue = 0;
         std::size_t min = -1; // greatest int possible
+
         for (unsigned int i = 0; i < cashierList_.size(); ++i) {
-            std::size_t actual = cashierList_.next().clientsQueueTime();
+            std::size_t actual = queueSize(cashierList_.next(),
+                    newClient.queueChoice());
             if (actual < min) {
                 smallestQueue = i;
                 min = actual;
             }
         }
+
         cashierList_.at(smallestQueue).insertClient(newClient);
+    }
+}
+
+bool GroceryStore::willGiveUp(const Client& client) {
+    std::size_t smallestQueueSize = -1;
+
+    for (unsigned int i = 0; i < cashierList_.size(); ++i) {
+        std::size_t actualNumberOfPeople =
+            cashierList_.next().clientsQueueSize();
+        if (actualNumberOfPeople < smallestQueueSize) {
+            smallestQueueSize = actualNumberOfPeople;
+        }
+    }
+
+    return smallestQueueSize > 10;
+}
+
+std::size_t GroceryStore::queueSize(const Cashier& cashier, bool choice) {
+    if (choice) {
+        return cashier.clientsQueueSize();
+    } else {
+        return cashier.clientsQueueTime();
     }
 }
 

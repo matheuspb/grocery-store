@@ -2,7 +2,7 @@
 #define CASHIER_HPP
 
 #include <iostream>
-#include "linked_queue.hpp"
+#include "array_queue.hpp"
 #include "client.hpp"
 
 class Cashier {
@@ -10,14 +10,14 @@ public:
     Cashier() = default;
     Cashier(int, int, std::string);
 
-    std::size_t clientsQueueSize();
+    std::size_t clientsQueueSize() const;
     void insertClient(Client&);
     void removeFirstClient();
     void update();
     int averageGain();
     int totalGain();
     int cashierEfficiency();
-    int clientsQueueTime();
+    int clientsQueueTime() const;
     int averageTime();
 
 private:
@@ -29,7 +29,7 @@ private:
     int totalGain_{0};
     int salary_{0};
     std::string ID_{};
-    structures::LinkedQueue<Client> clientsQueue_{};
+    structures::ArrayQueue<Client> clientsQueue_{10u};
 };
 
 #endif

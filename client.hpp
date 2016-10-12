@@ -5,6 +5,7 @@
 
 class Client {
 public:
+    Client() = default;
     Client(int);
 
     //! Returns the 'paymant method' to a client.
@@ -30,7 +31,7 @@ private:
     bool payWithMoney_;
     bool searchSmallestQueue_;
     int items_;
-    int arrivalTime_;
+    int arrivalTime_{0};
     int totalPurchaseValue_;
 };
 
