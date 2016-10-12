@@ -1,3 +1,6 @@
+#ifndef INPUT_HPP
+#define INPUT_HPP
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -9,3 +12,4 @@ namespace input {
     vector<string> readParametersInput();
 }
 
+#endif
