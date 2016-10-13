@@ -3,12 +3,10 @@
 
 GroceryStore::GroceryStore(unsigned int timeToBeSimulated,
         unsigned int paceToCreateClients,
-        structures::CircularList<Cashier>&& cashierList):
-    timeToBeSimulated_{timeToBeSimulated},
-    paceToCreateClients_{paceToCreateClients},
-    cashierList_{std::move(cashierList)} {
-
-}
+        structures::CircularList<Cashier>& cashierList):
+            timeToBeSimulated_{timeToBeSimulated},
+            paceToCreateClients_{paceToCreateClients},
+            cashierList_{cashierList} {}
 
 void GroceryStore::simulate() {
     while (timePassed < timeToBeSimulated_) {
@@ -32,7 +30,7 @@ void GroceryStore::showResults() const {
     std::cout << "Average gain per cashier: " << gain/cashierList_.size();
     std::cout << "\nGain per cashier:\n";
     for (unsigned int i = 0; i < cashierList_.size(); ++i) {
-        auto it = cashierList_.next();
+        Cashier it = cashierList_.next();
         std::cout << "    " << it.name() << " = " << it.totalGain() << "\n";
     }
 

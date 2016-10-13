@@ -29,20 +29,21 @@ public:
     }
 
     CircularList(const CircularList& other) {
+        head = new Node();
+        size_ = 0;
         CircularList list;
         for (std::size_t i = other.size_; i > 0; --i) {
-            list.push_front(T(other.at(i - 1)));
+            T copy(other.at(i - 1));
+            list.push_front(copy);
         }
-        head = list.head;
-        size_ = list.size_;
+        std::swap(head, list.head);
+        std::swap(size_, list.size_);
     }
 
     CircularList& operator=(const CircularList& other) {
-        clear();
-        delete head;
         CircularList list(other);
-        head = list.head;
-        size_ = list.size_;
+        std::swap(head, list.head);
+        std::swap(size_, list.size_);
         return *this;
     }
 
@@ -50,22 +51,20 @@ public:
      * @brief Move constructor
      */
     CircularList(CircularList&& other):
-        head{other.head},
-        size_{other.size_} {
-            other.head = new Node();
-            other.head->next(other.head);
-            other.size_ = 0;
-        }
+            head{other.head},
+            size_{other.size_} {
+        other.head = new Node();
+        other.head->next(other.head);
+        other.size_ = 0;
+    }
 
     /**
      * @brief Move assignment operator
      */
     CircularList& operator=(CircularList&& other) {
-        clear();
-        delete head;
         CircularList list(std::move(other));
-        head = list.head;
-        size_ = list.size_;
+        std::swap(head, list.head);
+        std::swap(size_, list.size_);
         return *this;
     }
 

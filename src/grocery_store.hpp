@@ -8,7 +8,7 @@ class GroceryStore {
 public:
     GroceryStore(unsigned int timeToBeSimulated,
             unsigned int paceToCreateClients,
-            structures::CircularList<Cashier>&& cashierList);
+            structures::CircularList<Cashier>& cashierList);
     void simulate();
     void showResults() const;
 

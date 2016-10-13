@@ -5,7 +5,7 @@
 
 int main(int argc, char* argv[]) {
     structures::CircularList<Cashier> cashiers;
-    
+
     std::vector<std::string> parameters;
     if (argc == 2) {
         parameters = input::readInputFile(argv[1]);
@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
     }
 
     GroceryStore store(std::stoi(parameters[1])*3600, std::stoi(parameters[2]),
-                        std::move(cashiers));
+                        cashiers);
     store.simulate();
     store.showResults();
 }

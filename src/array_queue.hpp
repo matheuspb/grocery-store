@@ -84,6 +84,7 @@ ArrayQueue<T>::ArrayQueue(ArrayQueue&& other):
         contents{other.contents},
         size_{other.size_},
         max_size_{other.max_size_} {
+    other.contents = new T[other.max_size_];
     other.size_ = 0;
 }
 
@@ -116,21 +117,19 @@ ArrayQueue<T>::~ArrayQueue()
 
 template<typename T>
 ArrayQueue<T>& ArrayQueue<T>::operator=(const ArrayQueue& other) {
-    delete[] contents;
     ArrayQueue q(other);
-    contents = q.contents;
-    size_ = q.size_;
-    max_size_ = q.max_size_;
+    std::swap(contents, q.contents);
+    std::swap(size_, q.size_);
+    std::swap(max_size_, q.max_size_);
     return *this;
 }
 
 template<typename T>
 ArrayQueue<T>& ArrayQueue<T>::operator=(ArrayQueue&& other) {
-    delete[] contents;
     ArrayQueue q(std::move(other));
-    contents = q.contents;
-    size_ = q.size_;
-    max_size_ = q.max_size_;
+    std::swap(contents, q.contents);
+    std::swap(size_, q.size_);
+    std::swap(max_size_, q.max_size_);
     return *this;
 }
 
