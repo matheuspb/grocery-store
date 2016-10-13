@@ -8,7 +8,7 @@
 
 namespace input {
     using namespace std;
-    vector<string> readInputFile();
+    vector<string> readInputFile(string);
     vector<string> readParametersInput();
 }
 

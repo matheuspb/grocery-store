@@ -1,13 +1,16 @@
 #include "input.hpp"
+#include <stdexcept>
 
 namespace input {
     using namespace std;
 
-    vector<string> readInputFile()
+    vector<string> readInputFile(string path)
     {
-        auto output_vector = vector<string>{};
+        vector<string> output_vector;
         ifstream file;
-        file.open("input_parameters.dat");
+        file.open(path);
+        if (!file.is_open())
+            throw std::runtime_error("File not found or couldn't be opened");
         while (!file.eof()) {
             string read_line;
             getline(file, read_line);

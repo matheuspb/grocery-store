@@ -3,11 +3,19 @@
 #include "grocery_store.hpp"
 #include "input.hpp"
 
-int main() {
+int main(int argc, char* argv[]) {
     structures::CircularList<Cashier> cashiers;
+    
+    std::vector<std::string> parameters;
+    if (argc == 2) {
+        parameters = input::readInputFile(argv[1]);
+    } else if (argc == 1) {
+        parameters = input::readParametersInput();
+    } else {
+        std::cout << "Usage: ./main.out parameter_file\n";
+        return 1;
+    }
 
-    std::vector<std::string> parameters = input::readInputFile();
-    if (parameters.size() == 0) parameters = input::readParametersInput();
     for (auto i = 0; i < std::stoi(parameters[3]); ++i) {
         std::stringstream read_line(parameters[i+4]);
         std::string cashier_name;
