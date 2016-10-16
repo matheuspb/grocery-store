@@ -4,6 +4,7 @@
 #include "input.hpp"
 
 int main(int argc, char* argv[]) {
+    srand(time(NULL));
     structures::CircularList<Cashier> cashiers;
 
     std::vector<std::string> parameters;

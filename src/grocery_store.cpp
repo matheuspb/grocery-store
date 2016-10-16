@@ -57,7 +57,7 @@ void GroceryStore::createClient() {
 
         for (unsigned int i = 0; i < cashierList_.size(); ++i) {
             std::size_t actual = queueSize(cashierList_.next(),
-                    newClient.queueChoice());
+                    newClient.searchSmallestQueue());
             if (actual < min) {
                 smallestQueue = i;
                 min = actual;

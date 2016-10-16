@@ -6,7 +6,16 @@ Client::Client(int arrivalTime):
     items_{(std::rand()%99) + 2},
     arrivalTime_{arrivalTime},
     totalPurchaseValue_{allProductsCost()}
+{}
+
+bool Client::payWithMoney()
 {
+    return payWithMoney_;
+}
+
+int Client::totalPurchaseValue()
+{
+    return totalPurchaseValue_;
 }
 
 bool Client::paymentMethod()
@@ -15,7 +24,7 @@ bool Client::paymentMethod()
     return true;
 }
 
-bool Client::queueChoice()
+bool Client::searchSmallestQueue()
 {
     return searchSmallestQueue_;
 }
@@ -24,11 +33,6 @@ bool Client::genQueueChoice()
 {
     if (std::rand() < 0.50) return false;
     return true;
-}
-
-bool Client::payWithMoney()
-{
-    return payWithMoney_;
 }
 
 int Client::allProductsCost()
@@ -54,9 +58,4 @@ int Client::purchaseTime(int cashierEfficiency)
         if (!payWithMoney_) time += 60;
     }
     return time;
-}
-
-int Client::totalPurchaseValue()
-{
-    return totalPurchaseValue_;
 }

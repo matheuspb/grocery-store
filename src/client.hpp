@@ -14,13 +14,12 @@ public:
      *  Returns 'true' if the client choose the queue by the number of people in,
      *and 'false' if the client choose the queue by the items number.
      */
-    bool queueChoice();
+    bool searchSmallestQueue();
     bool payWithMoney();
     int purchaseTime(int);
     int totalPurchaseValue();
 
 private:
-    int allProductsCost();
     //! Returns the 'paymant method' to a client.
     /*!
      *  Just return 'true' if the client will pay with money and 'false'if he will
@@ -28,6 +27,7 @@ private:
      */
     bool paymentMethod();
     bool genQueueChoice();
+    int allProductsCost();
 
     bool payWithMoney_;
     bool searchSmallestQueue_;
