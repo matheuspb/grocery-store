@@ -2,10 +2,10 @@
 #include <stdexcept>
 
 namespace input {
-    using namespace std;
 
-    vector<string> readInputFile(string path)
+    std::vector<std::string> readInputFile(std::string path)
     {
+        using namespace std;
         vector<string> output_vector;
         ifstream file;
         file.open(path);
@@ -14,16 +14,17 @@ namespace input {
         while (!file.eof()) {
             string read_line;
             getline(file, read_line);
-            if (read_line[0] != '#' && read_line.length() > 0 && read_line[0] != ' ')
-            {
+            if (read_line[0] != '#' && read_line.length() > 0
+                    && read_line[0] != ' ') {
                 output_vector.push_back(read_line);
             }
         }
         return output_vector;
     }
 
-    vector<string> readParametersInput()
+    std::vector<std::string> readParametersInput()
     {
+        using namespace std;
         auto output_vector = vector<string>{};
         string read_line;
         cout << "Nome do supermercado:" << "\n";
@@ -45,4 +46,5 @@ namespace input {
         }
         return output_vector;
     }
+
 }

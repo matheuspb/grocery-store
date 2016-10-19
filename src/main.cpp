@@ -29,6 +29,6 @@ int main(int argc, char* argv[]) {
     GroceryStore store(std::stoi(parameters[1])*3600, std::stoi(parameters[2]),
                         cashiers);
     store.simulate();
+    std::cout << "Grocery store name: " << parameters[0] << "\n";
     store.showResults();
 }
-
