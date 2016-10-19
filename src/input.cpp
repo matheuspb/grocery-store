@@ -28,16 +28,16 @@ namespace input {
     {
         std::vector<std::string> output_vector;
         std::string read_line;
-        std::cout << "Nome do supermercado:" << "\n";
+        std::cout << "Grocery store name:" << "\n";
         std::getline(std::cin, read_line);
         output_vector.push_back(read_line);
-        std::cout << "Tempo a ser simulado:" << "\n";
+        std::cout << "Time to be simulated (hours):" << "\n";
         std::getline(std::cin, read_line);
         output_vector.push_back(read_line);
-        std::cout << "Tempo de chegada de clientes:" << "\n";
+        std::cout << "Pace that clients are created (seconds):" << "\n";
         std::getline(std::cin, read_line);
         output_vector.push_back(read_line);
-        std::cout << "Numero de caixas:" << "\n";
+        std::cout << "Number of cashiers:" << "\n";
         std::getline(std::cin, read_line);
         output_vector.push_back(read_line);
         for (auto i = 0; i < std::stoi(output_vector[3]); ++i) {
