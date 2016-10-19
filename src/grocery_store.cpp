@@ -89,4 +89,3 @@ std::size_t GroceryStore::queueSize(const Cashier& cashier, bool choice) const {
         return cashier.clientsQueueTime();
     }
 }
-

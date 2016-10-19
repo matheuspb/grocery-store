@@ -3,8 +3,11 @@
 #include "grocery_store.hpp"
 #include "input.hpp"
 
+#include <ctime> // std::time()
+#include <cstdlib> // std::srand()
+
 int main(int argc, char* argv[]) {
-    srand(time(NULL));
+    std::srand(std::time(NULL));
     structures::CircularList<Cashier> cashiers;
 
     std::vector<std::string> parameters;

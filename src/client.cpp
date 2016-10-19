@@ -1,4 +1,5 @@
 #include "client.hpp"
+#include <cstdlib> // std::rand()
 
 Client::Client(int arrivalTime):
     payWithMoney_{std::rand() >= 0.20},

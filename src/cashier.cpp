@@ -74,4 +74,3 @@ int Cashier::salary() const
 {
     return salary_;
 }
-
