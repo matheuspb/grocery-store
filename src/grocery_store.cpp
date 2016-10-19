@@ -31,7 +31,8 @@ void GroceryStore::showResults() const {
     std::cout << "\nGain per cashier:\n";
     for (unsigned int i = 0; i < cashierList_.size(); ++i) {
         Cashier it = cashierList_.next();
-        std::cout << "    " << it.name() << " = " << it.totalGain() << "\n";
+        std::cout << "    " << it.name() << " = " << it.totalGain() <<
+            ", net gain = " << it.netGain(timePassed) << "\n";
     }
 
     int totalWait = 0;

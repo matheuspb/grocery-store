@@ -50,6 +50,12 @@ int Cashier::totalGain() const
     return totalGain_;
 }
 
+int Cashier::netGain(int timeSimulated) const
+{
+    // assuming 160 hours of work in a month
+    return  totalGain_ - salary_*((double)timeSimulated/3600)/160;
+}
+
 int Cashier::cashierEfficiency() const
 {
     return cashierEfficiency_;

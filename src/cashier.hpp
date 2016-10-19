@@ -16,6 +16,7 @@ public:
     void update();
     int averageGain() const;
     int totalGain() const;
+    int netGain(int) const;
     int cashierEfficiency() const;
     int clientsQueueTime() const;
     int averageTime() const;
