@@ -1,50 +1,29 @@
 #include "client.hpp"
 
 Client::Client(int arrivalTime):
-    payWithMoney_{paymentMethod()},
-    searchSmallestQueue_{genQueueChoice()},
+    payWithMoney_{std::rand() >= 0.20},
+    searchSmallestQueue_{std::rand() >= 0.50},
     items_{(std::rand()%99) + 2},
     arrivalTime_{arrivalTime},
     totalPurchaseValue_{allProductsCost()}
 {}
 
-bool Client::payWithMoney()
+bool Client::payWithMoney() const
 {
     return payWithMoney_;
 }
 
-int Client::totalPurchaseValue()
+int Client::totalPurchaseValue() const
 {
     return totalPurchaseValue_;
 }
 
-bool Client::paymentMethod()
-{
-    if (std::rand() < 0.20) return false;
-    return true;
-}
-
-bool Client::searchSmallestQueue()
+bool Client::searchSmallestQueue() const
 {
     return searchSmallestQueue_;
 }
 
-bool Client::genQueueChoice()
-{
-    if (std::rand() < 0.50) return false;
-    return true;
-}
-
-int Client::allProductsCost()
-{
-    auto value = 0;
-    for (auto i = 0; i < items_; ++i) {
-        value += (std::rand()%90) + 1;
-    }
-    return value;
-}
-
-int Client::purchaseTime(int cashierEfficiency)
+int Client::purchaseTime(int cashierEfficiency) const
 {
     int time = 0;
     if (cashierEfficiency == 1) {
@@ -58,4 +37,13 @@ int Client::purchaseTime(int cashierEfficiency)
         if (!payWithMoney_) time += 60;
     }
     return time;
+}
+
+int Client::allProductsCost() const
+{
+    auto value = 0;
+    for (auto i = 0; i < items_; ++i) {
+        value += (std::rand()%90) + 1;
+    }
+    return value;
 }
