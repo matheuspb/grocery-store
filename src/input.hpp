@@ -1,3 +1,4 @@
+// Copyright 2016 Lucas Bordignon and Matheus Bittencourt
 #ifndef INPUT_HPP
 #define INPUT_HPP
 

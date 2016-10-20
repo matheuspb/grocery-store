@@ -1,5 +1,4 @@
-// Copyright 2016 Matheus Bittencourt
-
+// Copyright 2016 Lucas Bordignon and Matheus Bittencourt
 #ifndef STRUCTURES_CIRCULAR_LIST_H
 #define STRUCTURES_CIRCULAR_LIST_H
 

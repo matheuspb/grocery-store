@@ -1,3 +1,4 @@
+// Copyright 2016 Lucas Bordignon and Matheus Bittencourt
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 

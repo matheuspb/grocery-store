@@ -1,3 +1,4 @@
+// Copyright 2016 Lucas Bordignon and Matheus Bittencourt
 #ifndef GROCERY_STORE_HPP
 #define GROCERY_STORE_HPP
 

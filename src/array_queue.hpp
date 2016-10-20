@@ -1,3 +1,4 @@
+// Copyright 2016 Lucas Bordignon and Matheus Bittencourt
 #ifndef STRUCTURES_ARRAY_QUEUE_H
 #define STRUCTURES_ARRAY_QUEUE_H
 
